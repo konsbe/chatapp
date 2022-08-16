@@ -13,7 +13,7 @@
 `npm install --save @types/express @types/cors @types/body-parser`<br/>
 `npm i -D nodemon ts-node` <br/>
 
-````touch index.ts<br/>
+```touch index.ts```<br/>
 
 ```npm start```<br/>
 Server Running
