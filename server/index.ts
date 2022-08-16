@@ -14,16 +14,6 @@ app.use(
     extended: false,
   })
 );
-
-app.get("/api", (req, res) => {
-  res.json({
-    message: "Hello world",
-  });
-});
-
-server.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
 const socketIO = require("socket.io")(http, {
   cors: {
     origin: "http://localhost:3000",
@@ -36,4 +26,14 @@ socketIO.on("connection", (socket: any) => {
   socket.on("disconnect", () => {
     console.log("🔥: A user disconnected");
   });
+});
+
+app.get("/api", (req, res) => {
+  res.json({
+    message: "Hello world",
+  });
+});
+
+server.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
 });
