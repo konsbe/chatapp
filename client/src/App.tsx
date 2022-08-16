@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import { io } from "socket.io-client";
+// import socketIO from "socket.io-client";
 import ChatPage from "./components/ChatPage";
-
-const socket = io("ws://localhost:3000");
-
+const socket = io("ws://localhost:4001", {
+  transports: ["websocket", "polling"],
+});
 function App() {
   return (
     <BrowserRouter>
