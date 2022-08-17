@@ -117,7 +117,12 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
   };
 
   const leaveCall = () => {
-    setCallData({ ...callData, callEnded: true, receivingCall: false });
+    setCallData({
+      ...callData,
+      callEnded: true,
+      receivingCall: false,
+      callAccepted: false,
+    });
     connectionRef.current = Peer;
     connectionRef.current.destroy();
     // window.location.reload();
@@ -159,14 +164,7 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
           <div className="call-button">
             <div className="call-button">
               {callData.callAccepted && !callData.callEnded ? (
-                <button
-                  style={{ backgroundColor: "red", marginTop: "20px" }}
-                  onClick={leaveCall}
-                  aria-label="call"
-                  className="home__cta"
-                >
-                  End Call
-                </button>
+                <></>
               ) : (
                 <button
                   color="primary"
@@ -176,6 +174,16 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
                   style={{ marginBottom: "1rem", marginTop: "1rem" }}
                 >
                   Call
+                </button>
+              )}
+              {callData.callAccepted && (
+                <button
+                  style={{ backgroundColor: "red", marginTop: "20px" }}
+                  onClick={leaveCall}
+                  aria-label="call"
+                  className="home__cta"
+                >
+                  End Call
                 </button>
               )}
               {callData.idToCall}
