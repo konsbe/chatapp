@@ -123,8 +123,16 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
       receivingCall: false,
       callAccepted: false,
     });
-    connectionRef.current = Peer;
-    connectionRef.current.destroy();
+    const peer = new Peer({
+      initiator: true,
+      trickle: true,
+      stream: undefined,
+    });
+    peer.on("signal", () => {
+      socket.emit("closeConnection");
+    });
+
+    // connectionRef.current.destroy();
     // window.location.reload();
     console.log("connectionRef: ", connectionRef);
     console.log("socket: ", socket);
