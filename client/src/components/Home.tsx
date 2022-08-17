@@ -9,6 +9,7 @@ const Home = ({ socket }: { socket: Socket }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     localStorage.setItem("userName", userName);
+    localStorage.setItem("socketID", socket.id);
     //sends the username and socket ID to the Node.js server
     socket.emit("newUser", { userName, socketID: socket.id });
     navigate("/chat");

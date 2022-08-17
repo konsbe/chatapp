@@ -1,27 +1,33 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Socket } from "socket.io-client";
 
 const ChatBody = ({
   messages,
   lastMessageRef,
   typingStatus,
+  socket,
 }: {
   messages: any;
   lastMessageRef: any;
   typingStatus: any;
+  socket: Socket;
 }) => {
   const navigate = useNavigate();
-
+  const [userData, setUserData] = React.useState({
+    name: localStorage.getItem("userName"),
+    id: localStorage.getItem("socketID"),
+  });
   const handleLeaveChat = () => {
     localStorage.removeItem("userName");
+    localStorage.removeItem("socketID");
     navigate("/");
     window.location.reload();
   };
-
   return (
     <>
       <header className="chat__mainHeader">
-        <p>Hangout with Colleagues</p>
+        <p>Hangout with Colleagues {userData.id}</p>
         <button className="leaveChat__btn" onClick={handleLeaveChat}>
           LEAVE CHAT
         </button>

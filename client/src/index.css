@@ -26,6 +26,13 @@ code {
   justify-content: center;
   align-items: center;
 }
+.chat_bar_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .home__container > * {
   margin-bottom: 10px;
 }

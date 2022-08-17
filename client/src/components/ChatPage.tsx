@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Socket } from "socket.io-client";
 import ChatBar from "./ChatBar";
 import ChatBody from "./ChatBody";
+import ChatCall from "./ChatCall";
 import ChatFooter from "./ChatFooter";
 
 const ChatPage = ({ socket }: { socket: Socket }) => {
@@ -30,9 +31,11 @@ const ChatPage = ({ socket }: { socket: Socket }) => {
           messages={messages}
           typingStatus={typingStatus}
           lastMessageRef={lastMessageRef}
+          socket={socket}
         />
         <ChatFooter socket={socket} />
       </div>
+      <ChatCall socket={socket} />
     </div>
   );
 };
