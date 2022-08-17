@@ -23,24 +23,12 @@ const socketIO = new Server(server, {
 });
 
 //Add this before the app.get() block
-// socketIO.on("connection", (socket: any) => {
-//   console.log(`⚡: ${socket.id} user just connected!`);
-
-//   //Listens and logs the message to the console
-//   socket.on("message", (data: any) => {
-//     console.log(data);
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("🔥: A user disconnected");
-//   });
-// });
 let users: any = [];
 
 socketIO.on("connection", (socket: any) => {
   console.log(`⚡: ${socket.id} user just connected!`);
   socket.on("message", (data: any) => {
-    console.log(data);
+    // console.log(data);
     socketIO.emit("messageResponse", data);
   });
 

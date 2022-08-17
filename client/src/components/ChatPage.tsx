@@ -7,7 +7,7 @@ import ChatFooter from "./ChatFooter";
 const ChatPage = ({ socket }: { socket: Socket }) => {
   const [messages, setMessages] = useState<any>([]);
   const [typingStatus, setTypingStatus] = useState("");
-  const lastMessageRef = useRef(null);
+  const lastMessageRef = useRef<null | HTMLDivElement>(null);
 
   React.useEffect(() => {
     socket.on("messageResponse", (data) => setMessages([...messages, data]));
@@ -16,6 +16,11 @@ const ChatPage = ({ socket }: { socket: Socket }) => {
   React.useEffect(() => {
     socket.on("typingResponse", (data) => setTypingStatus(data));
   }, [socket]);
+
+  React.useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="chat">
