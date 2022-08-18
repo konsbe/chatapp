@@ -70,7 +70,7 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
 
       connectionRef.current.destroy();
     });
-  }, [callData, socket]);
+  }, []);
 
   const callUser = (id: any) => {
     const peer = new Peer({
@@ -141,7 +141,38 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
   return (
     <div className="chat__sidebar">
       <h2 style={{ float: "right", marginBottom: "3rem" }}>Call Room</h2>
-      <div>
+      <div className="video-container">
+        <div className="video">
+          {callData.stream ? (
+            <video
+              playsInline
+              muted
+              ref={myVideo}
+              autoPlay
+              style={{ width: "300px" }}
+            />
+          ) : (
+            <video
+              playsInline
+              muted
+              ref={myVideo}
+              autoPlay
+              style={{ width: "300px" }}
+            />
+          )}
+        </div>
+        <div className="video">
+          {callData.callAccepted && !callData.callEnded ? (
+            <video
+              playsInline
+              ref={userVideo}
+              autoPlay
+              style={{ width: "300px", position: "absolute" }}
+            />
+          ) : (
+            <>no signal..</>
+          )}
+        </div>
         {/* <h4 className="chat__header">ACTIVE USERS</h4> */}
         <div className="chat_bar_container">
           <label htmlFor="username" style={{ marginBottom: "1rem" }}>
@@ -197,29 +228,6 @@ const ChatCall = ({ socket }: { socket: Socket }) => {
               {callData.idToCall}
             </div>
           </div>
-        </div>
-      </div>
-      <div className="video-container">
-        <div className="video">
-          {callData.stream && (
-            <video
-              playsInline
-              muted
-              ref={myVideo}
-              autoPlay
-              style={{ width: "300px" }}
-            />
-          )}
-        </div>
-        <div className="video">
-          {callData.callAccepted && !callData.callEnded ? (
-            <video
-              playsInline
-              ref={userVideo}
-              autoPlay
-              style={{ width: "300px" }}
-            />
-          ) : null}
         </div>
       </div>
       <div>
