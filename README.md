@@ -1,5 +1,5 @@
 # chatapp
-
+## client and server
 #### Dependencies
 `cd client`<br/>
 `npx create-react-app ./ --template typescript`<br/>
