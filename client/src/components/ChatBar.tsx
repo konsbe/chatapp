@@ -21,5 +21,5 @@ const ChatBar = ({ socket }: { socket: Socket }) => {
     </div>
   );
 };
-
+//
 export default ChatBar;
